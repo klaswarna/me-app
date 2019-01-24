@@ -4,7 +4,7 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     const data = {
         data: {
-            msg: "Välj ett specifikt kursmoment att läsa om. Skriv det i sist u url:en"
+            msg: "Välj ett specifikt kursmoment att läsa om. Skriv det sist i url:en"
         }
     };
 
