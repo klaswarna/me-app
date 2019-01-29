@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 
 const index = require('./routes/index');
 const reports = require('./routes/reports');
+const register = require('./routes/register');
+const login = require('./routes/login');
 
 app.use(cors());
 
@@ -34,8 +36,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 app.use('/', index);
 app.use('/reports', reports);
-
-
+app.use('/register', register);
+app.use('/login', login);
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
