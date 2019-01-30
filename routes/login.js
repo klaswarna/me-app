@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
                         const token = jwt.sign(payload, secret, { expiresIn: '1h'});
                         res.json(token);
                     } else {
-                        res.json("fel lösenord");
+                        res.json("Invalid password or username");
                     }
                     console.log(result);
                 });
