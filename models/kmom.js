@@ -16,7 +16,7 @@ function checkAnswer() {
 
 //addar kmom
 function addReport(res, content) {
-    answer = "empty";
+    //answer. = "empty";
     content.text.forEach(function(element) {
         db.run("INSERT INTO reports (id, content) VALUES (?, ?)",
             content.kmom,
