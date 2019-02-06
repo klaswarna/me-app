@@ -8,9 +8,10 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/texts.sqlite');
 
 var answer;
+var content ="";
 
 function checkAnswer() {
-    return answer
+    return answer;
 }
 
 //addar kmom
@@ -42,9 +43,17 @@ function getReport(kmom) {
             answer = false;
         } else {
             if (row.length > 0) {
-                answer = [kmom, row[0].content];
+                content = row.map(stycke => stycke.content);
+                //answer = row.map(stycke => stycke.content);
+                answer = {
+                     title: kmom,
+                     paragraphs: content
+                 };
             } else {
-                answer = [kmom, "no such index"];
+                answer = {
+                    title: kmom,
+                    paragraphs: ["no such index"]
+                };
             }
 
             //console.log(row.length);

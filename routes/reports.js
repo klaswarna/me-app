@@ -52,9 +52,7 @@ router.get('/:kmom', function(req, res, next) {
         function() {
             const data = {
                 data: {
-                    msg: [
-                        kmom.checkAnswer()
-                    ]
+                    msg: kmom.checkAnswer()
                 }
             };
             res.json(data);

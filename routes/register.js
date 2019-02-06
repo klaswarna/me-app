@@ -7,7 +7,7 @@ const users = require("../models/users.js");
 const saltRounds = 10;
 
 router.post('/', function(req, res, next) {
-    var data = "sune";
+    var data = "";
     email = req.body.email;
     password = req.body.password;
     bcrypt.hash(password, saltRounds, function(err, hash) {

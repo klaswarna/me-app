@@ -1,4 +1,4 @@
-DROP TABLE users;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE(email)
 );
 
-DROP TABLE reports;
+DROP TABLE IF EXISTS reports;
 
 CREATE TABLE IF NOT EXISTS reports (
     id VARCHAR(60) NOT NULL,

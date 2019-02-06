@@ -12,6 +12,8 @@ const reports = require('./routes/reports');
 const register = require('./routes/register');
 const login = require('./routes/login');
 
+process.env.JWT_SECRET="armavirumquecanotroiaequiprimusaborisitaliamfatoprofuguslaviniaquevenit";
+
 app.use(cors());
 
 // don't show the log when it is test
