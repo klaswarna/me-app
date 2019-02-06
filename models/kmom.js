@@ -7,7 +7,7 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./db/texts.sqlite');
 
-var answer;
+var answer = [];
 var content ="";
 
 function checkAnswer() {
@@ -17,19 +17,23 @@ function checkAnswer() {
 //addar kmom
 function addReport(res, content) {
     answer = "empty";
-    db.run("INSERT INTO reports (id, content) VALUES (?, ?)",
-        content.kmom,
-        content.text, (err) => {
-        if (err) {
-            // returnera error
-            answer = ("Something went wrong when adding report: " + err);
-            return
-        } else {
-            // if went well
-            answer = ["Report added", content.kmom, content.text];
-            return
-        }
+    content.text.forEach(function(element) {
+        db.run("INSERT INTO reports (id, content) VALUES (?, ?)",
+            content.kmom,
+            element, (err) => {
+            if (err) {
+                // returnera error
+                answer = ("Something went wrong when adding report: " + err);
+                return
+            } else {
+                // if went well
+                answer.push = ["Added: " + element + " to " + content.kmom];
+                return
+            }
+        });
     });
+
+
     return
 }
 

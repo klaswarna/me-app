@@ -10,6 +10,5 @@ DROP TABLE IF EXISTS reports;
 
 CREATE TABLE IF NOT EXISTS reports (
     id VARCHAR(60) NOT NULL,
-    content TEXT NOT NULL,
-    UNIQUE(id)
+    content TEXT NOT NULL
 );
