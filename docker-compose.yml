@@ -1,0 +1,25 @@
+version: "3"
+services:
+    node_latest:
+        build:
+            context: .
+            dockerfile: docker/test1
+        volumes:
+            - ./:/app/
+            - /app/node_modules/
+
+    node_8_alpine:
+        build:
+            context: .
+            dockerfile: docker/test2
+        volumes:
+            - ./:/app/
+            - /app/node_modules/
+
+    node_6_alpine:
+        build:
+            context: .
+            dockerfile: docker/test3
+        volumes:
+            - ./:/app/
+            - /app/node_modules/

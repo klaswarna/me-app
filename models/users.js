@@ -11,7 +11,7 @@ const bcrypt = require('bcryptjs');//för det andra funkar ej på servern
 const saltRounds = 10;
 //const myPlaintextPassword = 'longandhardP4$$w0rD';
 
-var answer;
+var answer = "";
 
 function checkAnswer() {
     return answer
