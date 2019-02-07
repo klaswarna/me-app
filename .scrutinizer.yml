@@ -1,10 +1,17 @@
 checks:
     javascript: true
 
-build:
-    dependencies:
+#build:
+    #dependencies:
         #before:
             #- npm install istanbul   # or add it as part of your package.json
+
+build:
+    nodes:
+        analysis:
+            tests:
+                override:
+                    - js-scrutinizer-run
 
     tests:
         override:
@@ -14,12 +21,3 @@ build:
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
-
-build:
-    nodes:
-        analysis:
-            tests:
-                override:
-                    # Add the respective Scrutinizer analysis for your language like
-                    - js-scrutinizer-run
-                    # ....
