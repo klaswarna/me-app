@@ -14,3 +14,12 @@ build:
                 coverage:
                     file: 'coverage/clover.xml'
                     format: 'clover'
+
+build:
+  nodes:
+    analysis:
+      tests:
+        override:
+          # Add the respective Scrutinizer analysis for your language like
+          - js-scrutinizer-run
+          # ....
