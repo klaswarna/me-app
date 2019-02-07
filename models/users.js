@@ -18,7 +18,7 @@ function checkAnswer() {
 }
 
 //hashar och lägger sen in ny användare
-async function newUser(email, password) {
+function newUser(email, password) {
     answer = "empty";
     db.run("INSERT INTO users (email, password) VALUES (?, ?)",
         email,
