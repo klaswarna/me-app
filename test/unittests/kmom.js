@@ -6,7 +6,7 @@
 /* global describe it */
 
 var assert = require("assert");
-const kmom = require("../models/kmom");
+const kmom = require("../../models/kmom");
 
 describe("Testing methods in kmom", function() {
     describe("Get current content of variable answer without prior use of parent method", function() {
@@ -14,7 +14,8 @@ describe("Testing methods in kmom", function() {
             let res = kmom.checkAnswer();
             let comp = []
 
-            assert.equal(res.length, comp.length);
+            //assert.equal(res.length, comp.length);
+            assert.equal(res.title, "kmom02");
         });
     });
     // describe("Testing getReport with invalid kmom-value (by checking answer)", function() {
