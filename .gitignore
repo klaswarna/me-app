@@ -1,5 +1,5 @@
 # databasen
-*.sqlite
+texts.sqlite
 
 # Logs
 logs

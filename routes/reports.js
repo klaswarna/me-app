@@ -45,6 +45,7 @@ router.get('/', function(req, res, next) {
     res.json(data);
 });
 
+
 router.get('/:kmom', function(req, res, next) {
     data = "";
     kmom.getReport(req.params.kmom);
@@ -58,6 +59,7 @@ router.get('/:kmom', function(req, res, next) {
             res.json(data);
         }, 500);
 });
+
 
 
 

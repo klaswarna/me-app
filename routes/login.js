@@ -12,6 +12,7 @@ router.post('/', function(req, res, next) {
     email = req.body.email;
     password = req.body.password;
     const payload = { email: email };
+
     users.logIn(email);
     setTimeout(
         function() {
