@@ -13,6 +13,7 @@ var answer = [];
 var content ="";
 
 function checkAnswer() {
+    console.log(answer);
     return answer;
 }
 

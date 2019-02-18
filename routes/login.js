@@ -30,12 +30,13 @@ router.post('/', function(req, res, next) {
                         const token = jwt.sign(payload, secret, { expiresIn: '1h'});
                         res.json({
                             token: token,
-                            msg: "Logged in as " + payload.email
+                            msg: "You're logged in as " + payload.email,
+                            user: payload.email
                         });
                     } else {
                         res.json({
                             token: false,
-                            msg: "Invalid password or username"
+                            msg: "Invalid password, try again!"
                         });
                     }
                     console.log(result);
