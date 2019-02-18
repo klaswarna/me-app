@@ -19,15 +19,24 @@ router.post('/', function(req, res, next) {
             hash = users.checkAnswer();
 
             if (hash === "No such user") {
-                res.json("Something went wrong");
+                res.json({
+                    token: false,
+                    msg: "No such user"
+                });
             } else {
                 bcrypt.compare(password, hash, function(err, result) {
                     // res innehåller nu true eller false beroende på om det är rätt lösenord.
                     if (result) {
                         const token = jwt.sign(payload, secret, { expiresIn: '1h'});
-                        res.json(token);
+                        res.json({
+                            token: token,
+                            msg: "Logged in as " + payload.email
+                        });
                     } else {
-                        res.json("Invalid password or username");
+                        res.json({
+                            token: false,
+                            msg: "Invalid password or username"
+                        });
                     }
                     console.log(result);
                 });
