@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) {
         function() {
             hash = users.checkAnswer();
 
-            if (hash === false) {
+            if (hash === "No such user") {
                 res.json("Something went wrong");
             } else {
                 bcrypt.compare(password, hash, function(err, result) {
