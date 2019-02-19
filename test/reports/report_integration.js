@@ -92,7 +92,7 @@ describe('Reports', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     //console.log(res);
-                    res.body.should.be.a("string");
+                    res.body.should.be.an("object");
 
                     done();
                 });

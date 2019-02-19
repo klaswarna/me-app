@@ -138,9 +138,4 @@ server.listen(port, () => {
 });
 
 
-// module.exports = server;
-
-
-module.exports = {
-    server: server,
-};
+module.exports = server;
