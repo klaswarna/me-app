@@ -11,6 +11,18 @@ const index = require('./routes/index');
 const reports = require('./routes/reports');
 const register = require('./routes/register');
 const login = require('./routes/login');
+const webs = require('./routes/websocket');
+
+//för websocket
+const http = require("http");
+const url = require("url");
+const Websocket = require("ws");
+const server = http.createServer(app);
+const wss = new Websocket.Server({
+    server: server,
+    clientTracking: true,
+    handleProtocols: handleProtocols
+});
 
 process.env.JWT_SECRET="armavirumquecanotroiaequiprimusaborisitaliamfatoprofuguslaviniaquevenit";
 
@@ -67,8 +79,68 @@ app.use((err, req, res, next) => {
     });
 });
 
+//Bestämma subprotokoll
+/**
+ * Select subprotocol to use for connection.
+ *
+ * @param {Array} protocols              Subprotocols to choose from, sent
+ *                                        by client request.
+ * @param {http.IncomingMessage} request The client HTTP GET request.
+ *
+ * @return {void}
+ */
+function handleProtocols(protocols , request) {
+    console.log(`Incoming protocol requests '${protocols}'.`);
+    for (var i=0; i < protocols.length; i++) {
+        if (protocols[i] === "text") {
+            return "text";
+        } else if (protocols[i] === "json") {
+            return "json";
+        }
+    }
+    return false;
+}
 
 
-// Start up server
-const server = app.listen(port, () => console.log(`Example API listening on port ${port}!`));
-module.exports = server;
+// Broadcast data to everyone except one self (ws).
+wss.broadcastExcept = (ws, data) => {
+    let clients = 0;
+
+
+    wss.clients.forEach((client) => {
+        //if (client !== ws && client.readyState === Websocket.OPEN) { // för att inte skicka till sig själv
+        if (client.readyState === Websocket.OPEN) { // för att även skicka till sig själv
+            clients++;
+
+            if(ws.protocol === "json") {
+                let msg = {
+                    timestamp: Date(),
+                    data: data
+                }
+                client.send(JSON.stringify(msg));
+            } else {
+                client.send(data);
+            }
+
+        }
+    });
+    console.log(`Broadcasted data to ${clients} (${wss.clients.size}) clients.`);
+};
+
+
+
+// Handle websocket requests
+wss.on("connection", (ws, req) => {webs.websocket(ws, req, wss)});
+
+// Startup server (med websocket)
+server.listen(port, () => {
+    console.log(`Server is listening on ${port}`);
+});
+
+
+// module.exports = server;
+
+
+module.exports = {
+    server: server,
+};
