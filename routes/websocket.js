@@ -37,8 +37,8 @@ websocket = function (ws, req, wss){
     ws.on("message", (message) => {
             console.log("Received: %s", message);
             wss.broadcastExcept(ws, message);
-            //insertChatboard("mongodb://localhost:27017/chatboard", JSON.parse(message) );
-            insertChatboard("mongodb://localhost:27017/chatboard", message);
+            insertChatboard("mongodb://localhost:27017/chatboard", JSON.parse(message) );
+            //insertChatboard("mongodb://localhost:27017/chatboard", message);
             //skicka meddelandet till databasen oxå!
         });
 
