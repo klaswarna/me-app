@@ -9,7 +9,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = require("../db/database.js");
 
 
-const mondo = require("mongodb").MongoClient;
+const mongo = require("mongodb").MongoClient;
 const dsn = "mongodb://localhost:27017/chatboard";
 
 
