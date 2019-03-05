@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const kmom = require("../models/kmom.js");
 
 const mondo = require("mongodb").MongoClient;
-const dsn = "mongodb://localhost:27017/mumin";
+const dsn = "mongodb://localhost:27017/chatboard";
 
 
 // får se om detta middleware funkar här
