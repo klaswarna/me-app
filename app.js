@@ -12,6 +12,7 @@ const reports = require('./routes/reports');
 const register = require('./routes/register');
 const login = require('./routes/login');
 const webs = require('./routes/websocket');
+const chatlist = require('./routes/chatlist');
 
 //för websocket
 const http = require("http");
