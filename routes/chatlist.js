@@ -11,7 +11,7 @@ const dsn = "mongodb://localhost:27017/mumin";
 
 //nedan route att visa chatboarden:
 
-router.get('/chatlist', async function(request, response) { // undrar om skall vara next som sista parameter?
+router.get('/chatlist', async function(request, response, next) { // undrar om skall vara next som sista parameter?
     try {
         let res = await kmom.findInCollection(dsn, "chat", {}, {}, 0);
 
