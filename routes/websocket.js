@@ -1,5 +1,18 @@
 var url = require("url");
 
+// för mongo db
+const mongo = require("mongodb").MongoClient;
+const dsn = "mongodb://localhost:27017/chatboard"; // vet ej om detta korrekt
+
+async function insertChatboard(message) {
+    const client = await mongo.client(dsn);
+    const db = await client.db();
+    const col = await db.collection("chatboard");
+    await col.insertMany(message)
+    await client.close();
+}
+
+
 websocket = function (ws, req, wss){
     const location = url.parse(req.url, true);
     // You might use location.query.access_token to authenticate or share
@@ -24,6 +37,8 @@ websocket = function (ws, req, wss){
     ws.on("message", (message) => {
             console.log("Received: %s", message);
             wss.broadcastExcept(ws, message);
+            insertChatboard(message);
+            //skicka meddelandet till databasen oxå!
         });
 
 
