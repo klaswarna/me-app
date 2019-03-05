@@ -52,6 +52,7 @@ app.use('/', index);
 app.use('/reports', reports);
 app.use('/register', register);
 app.use('/login', login);
+app.use('/chatlist', chatlist);
 
 // Add routes for 404 and error handling
 // Catch 404 and forward to error handler
