@@ -68,11 +68,20 @@ function getReport(kmom) {
     return
 }
 
+// nedanstående fullständigt stulen från exempelkod p.g.a. sin förträffliga utbyggnadsmöjlighet
+async function findInCollection(dsn, colName, criteria, projection, limit) {
+    const client = await mongo.connection(dsn);
+    const db = await client.db();
+    const col = await db.collection(colName);
+    const res = await col.find(criteria, projection).limit(limit).toArray();
 
-
+    await client.close();
+    return res;
+}
 
 module.exports = {
     addReport : addReport,
     checkAnswer : checkAnswer,
-    getReport : getReport
+    getReport : getReport,
+    findInCollection: findInCollection
 };
