@@ -2,7 +2,7 @@ var url = require("url");
 
 // för mongo db
 const mongo = require("mongodb").MongoClient;
-const dsn = "mongodb://localhost:27017/chatboard"; // vet ej om detta korrekt
+const dsn = "mongodb://localhost:27017/chatboard"; //chatboard är databasen, chat är kollektionen
 
 async function insertChatboard(dsn, message) {
     const client = await mongo.connect(dsn);
@@ -38,7 +38,7 @@ websocket = function (ws, req, wss){
             console.log("Received: %s", message);
             wss.broadcastExcept(ws, message);
             //insertChatboard("mongodb://localhost:27017/chatboard", JSON.parse(message) );
-            insertChatboard("mongodb://localhost:27017/chatboard", { name: 'Buggaren'} );
+            insertChatboard("mongodb://localhost:27017/chatboard", message);
             //skicka meddelandet till databasen oxå!
         });
 
