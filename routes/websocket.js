@@ -5,7 +5,7 @@ const mongo = require("mongodb").MongoClient;
 const dsn = "mongodb://localhost:27017/chatboard"; // vet ej om detta korrekt
 
 async function insertChatboard(dsn, message) {
-    const client = await mongo.client(dsn);
+    const client = await mongo.connect(dsn);
     const db = await client.db();
     const col = await db.collection("chat");
     await col.insertOne(message)
