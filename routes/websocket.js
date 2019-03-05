@@ -7,8 +7,8 @@ const dsn = "mongodb://localhost:27017/chatboard"; // vet ej om detta korrekt
 async function insertChatboard(dsn, message) {
     const client = await mongo.client(dsn);
     const db = await client.db();
-    const col = await db.collection("chatboard");
-    await col.insertMany(message)
+    const col = await db.collection("chat");
+    await col.insertOne(message)
     await client.close();
 }
 
