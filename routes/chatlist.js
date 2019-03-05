@@ -25,4 +25,4 @@ router.get('/chatlist', async function(request, response, next) { // undrar om s
 
 
 
-module.exports = chatlist;
+module.exports = router;
