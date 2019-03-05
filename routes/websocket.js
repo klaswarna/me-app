@@ -4,7 +4,7 @@ var url = require("url");
 const mongo = require("mongodb").MongoClient;
 const dsn = "mongodb://localhost:27017/chatboard"; // vet ej om detta korrekt
 
-async function insertChatboard(message) {
+async function insertChatboard(dsn, message) {
     const client = await mongo.client(dsn);
     const db = await client.db();
     const col = await db.collection("chatboard");
@@ -37,7 +37,7 @@ websocket = function (ws, req, wss){
     ws.on("message", (message) => {
             console.log("Received: %s", message);
             wss.broadcastExcept(ws, message);
-            insertChatboard(message);
+            insertChatboard("mongodb://localhost:27017/chatboard", JSON.parse(message) );
             //skicka meddelandet till databasen oxå!
         });
 
